@@ -1,9 +1,9 @@
 import { Box, createTheme, ThemeProvider } from "@mui/material";
 import { useState } from "react";
-import Header from "./components/Header";
+import Header from "./layouts/Header";
 
 function App() {
-  const [mode, setMode] = useState("dark");
+  const [mode] = useState("dark");
   const darkTheme = createTheme({
     palette: {
       mode: mode,
