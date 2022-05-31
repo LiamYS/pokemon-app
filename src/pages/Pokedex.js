@@ -1,4 +1,5 @@
-import { Grid } from "@mui/material";
+import { AddCircle } from "@mui/icons-material";
+import { Box, Button, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 
@@ -20,7 +21,6 @@ const Pokedex = () => {
           `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
         );
         const data = await res.json();
-
         setAllPokemons((currentList) => [...currentList, data]);
       });
     }
@@ -29,22 +29,30 @@ const Pokedex = () => {
 
   useEffect(() => {
     getAllPokemons();
+    console.log(allPokemons);
   }, []);
 
   return (
-    <Grid container spacing={{ xs: 2, md: 3 }} p={2}>
-      {allPokemons.map((pokemon, index) => (
-        <Grid item xs={6} md={3}>
-          <PokemonCard
-            id={pokemon.id}
-            name={pokemon.name}
-            image={pokemon.sprites.other.dream_world.front_default}
-            type={pokemon.types[0].type.name}
-            key={index}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={{ xs: 2, md: 3 }} p={5} sx={{ display: "flex" }}>
+        {allPokemons.map((pokemon) => (
+          <Grid item xs={6} md={4}>
+            <PokemonCard
+              key={pokemon.id}
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.sprites.other.dream_world.front_default}
+              primaryType={pokemon.types[0].type.name}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Box textAlign="center" pb={5}>
+        <Button startIcon={<AddCircle />} onClick={() => getAllPokemons()}>
+          Load More
+        </Button>
+      </Box>
+    </>
   );
 };
 
