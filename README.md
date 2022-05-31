@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+[![header][header-url]][header-link]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project Name
 
-## Available Scripts
+[![Project Version][version-image]][version-url]
+[![Frontend][frontend-image]][frontend-url]
+[![Backend][backend-image]][backend-url]
 
-In the project directory, you can run:
+> Short blurb about your project idea.
 
-### `npm start`
+One or two paragraphs about your project and what it does.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Author
 
-### `npm test`
+**Your name**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- _Initial work_ - [repository-name][repository-url] (Repository space)
+- _Released on_ [cloud-provider][cloud-provider-url] (Cloud provider)
+- _My professional profile on_ [LinkedIn][linkedin-url]
 
-### `npm run build`
+## Showcase
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project was designed to demonstrate:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Technology 1
+  - Tech 1 subitem
+- Technology 2
+- .
+- .
+- .
+- Technology N
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage example
 
-### `npm run eject`
+Bring the best usages of your project.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+_For more examples and usage, please refer to the [Wiki][wiki]._
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Describe how to get your project running.
 
-## Learn More
+MacOS & Linux:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+npm install my-module --save
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Windows:
 
-### Code Splitting
+```sh
+edit autoexec.bat
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Development setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Describe how to install all development dependencies and consider do this for multiple platforms.
 
-### Making a Progressive Web App
+```sh
+make install
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Running the tests
 
-### Advanced Configuration
+Remember this is a showcase, thus your potential employer might want to see an automated test-suite of some kind up running.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Built With
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [Maven](https://maven.apache.org/) - Dependency Management
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) - To deploy on Heroku
 
-### `npm run build` fails to minify
+## Release History
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 0.2.1
+  - CHANGE: Update docs (module code remains unchanged)
+- 0.2.0
+  - CHANGE: Refactoring - Remove `setAnyMethod()`
+  - ADD: Add `newSomething()`
+- 0.1.1
+  - FIX: Crash when calling `defaultXYZ()` (Thanks @ContributorName)
+- 0.1.0
+  - The first proper release
+- 0.0.1
+  - Initial work
+
+---
+
+## Contributing
+
+1. Fork it (<https://github.com/yourname/yourproject/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
+
+<!-- Markdown link & img dfn's -->
+
+[header-url]: github-template.png
+[header-link]: https://github.com/alexandrerosseto
+[repository-url]: https://github.com/alexandrerosseto/wbshopping
+[cloud-provider-url]: https://wbshopping.herokuapp.com
+[linkedin-url]: https://www.linkedin.com/in/alexandrerosseto
+[wiki]: https://github.com/yourname/yourproject/wiki
+[version-image]: https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge&logo=appveyor
+[version-url]: https://img.shields.io/badge/version-1.0.0-green
+[frontend-image]: https://img.shields.io/badge/Frontend-Ionic-blue?style=for-the-badge
+[frontend-url]: https://img.shields.io/badge/Frontend-Ionic-blue?style=for-the-badge
+[backend-image]: https://img.shields.io/badge/Backend-Java%208-important?style=for-the-badge
+[backend-url]: https://img.shields.io/badge/Backend-Java%208-important?style=for-the-badge
