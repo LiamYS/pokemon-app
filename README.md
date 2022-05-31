@@ -1,11 +1,7 @@
-[![header][header-url]][header-link]
-
 # Pokémon App
 
 [![Project Version][version-image]][version-url]
 [![Frontend][frontend-image]][frontend-url]
-
-> Short blurb about your project idea.
 
 This project will give the user the ability to search for any Pokémon in the PokéDex. Furthermore, one can search for different items and berries aswell. This project was for educational purposes.
 
