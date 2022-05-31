@@ -8,21 +8,16 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const PokemonCard = () => {
+const PokemonCard = ({ id, name, image, type, key }) => {
   return (
     <Card sx={{ naxWidth: 345 }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          maxHeight="100px"
-          image="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
-          alt="Bulbassaur"
-        />
+        <CardMedia component="img" image={image} alt={name} />
         <CardContent>
-          <Typography variant="h6">#001</Typography>
-          <Typography variant="h5">Bulbassaur</Typography>
+          <Typography variant="h6">#0{id}</Typography>
+          <Typography variant="h5">{name}</Typography>
           <Chip
-            label="Grass"
+            label={type}
             sx={{ backgroundColor: "green", marginRight: 1 }}
           />
           <Chip label="Poison" sx={{ backgroundColor: "purple" }} />
