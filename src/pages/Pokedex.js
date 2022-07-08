@@ -12,7 +12,7 @@ const Pokedex = () => {
     for (let i = 1; i <= 151; i++) {
       pokemonArray.push(await getPokemonData(i));
     }
-    console.log(pokemonArray);
+    // console.log(pokemonArray);
     setPokemon(pokemonArray);
     setLoading(false);
   };
@@ -24,6 +24,7 @@ const Pokedex = () => {
 
   useEffect(() => {
     getPokemonList();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -37,9 +38,9 @@ const Pokedex = () => {
           <Typography sx={{ ml: 1 }}>Fetching Pokemon...</Typography>
         </Backdrop>
       ) : (
-        <Grid container spacing={2}>
+        <Grid container spacing={3} sx={{ p: 3 }}>
           {pokemon.map((p) => (
-            <Grid item key={p.data.name} xs={12} md={4}>
+            <Grid item key={p.data.name} xs={12} sm={6} md={4} lg={2}>
               <PokemonCard pokemon={p.data} />
             </Grid>
           ))}

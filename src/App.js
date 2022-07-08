@@ -5,6 +5,7 @@ import Header from "./layouts/Header";
 import Pokedex from "./pages/Pokedex";
 import Berries from "./pages/Berries";
 import Items from "./pages/Items";
+import Pokemon from "./pages/Pokemon";
 
 function App() {
   const [mode] = useState("dark");
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Pokedex />} />
             <Route path="/berries" element={<Berries />} />
             <Route path="/items" element={<Items />} />
+            <Route path="/pokemon/:id" element={<Pokemon />} />
           </Routes>
         </Box>
       </ThemeProvider>

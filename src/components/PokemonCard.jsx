@@ -11,21 +11,29 @@ import React from "react";
 const PokemonCard = ({ pokemon }) => {
   return (
     <Card>
-      <CardActionArea>
+      <CardActionArea href={`/pokemon/${pokemon.id}`}>
         <CardContent>
           <CardMedia
             component="img"
-            // height="140"
             image={pokemon.sprites.front_default}
             alt={pokemon.name}
           />
           <Typography variant="h6">#{pokemon.id}</Typography>
-          <Typography variant="h5">{pokemon.name}</Typography>
-          {/* <Chip
-            label={primaryType}
-            sx={{ backgroundColor: "green", marginRight: 1 }}
+          <Typography variant="h5">
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+          </Typography>
+          <Chip
+            label={
+              pokemon.types[0].type.name.charAt(0).toUpperCase() +
+              pokemon.types[0].type.name.slice(1)
+            }
+            sx={{ backgroundColor: "green", marginRight: 1, mt: 1 }}
           />
-          <Chip label={secondaryType} sx={{ backgroundColor: "purple" }} /> */}
+
+          {/* <Chip
+            label={pokemon.types[1].type.name}
+            sx={{ backgroundColor: "purple" }}
+          /> */}
         </CardContent>
       </CardActionArea>
     </Card>
