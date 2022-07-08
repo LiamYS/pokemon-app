@@ -1,57 +1,50 @@
-import { AddCircle } from "@mui/icons-material";
-import { Box, Button, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Backdrop, CircularProgress, Grid, Typography } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 
 const Pokedex = () => {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=20"
-  );
+  const [pokemon, setPokemon] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const getAllPokemons = async () => {
-    const res = await fetch(loadMore);
-    const data = await res.json();
-
-    setLoadMore(data.next);
-
-    function createPokemonObject(result) {
-      result.forEach(async (pokemon) => {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await res.json();
-        setAllPokemons((currentList) => [...currentList, data]);
-      });
+  const getPokemonList = async () => {
+    let pokemonArray = [];
+    for (let i = 1; i <= 151; i++) {
+      pokemonArray.push(await getPokemonData(i));
     }
-    createPokemonObject(data.results);
+    console.log(pokemonArray);
+    setPokemon(pokemonArray);
+    setLoading(false);
+  };
+
+  const getPokemonData = async (id) => {
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    return res;
   };
 
   useEffect(() => {
-    getAllPokemons();
-    console.log(allPokemons);
+    getPokemonList();
   }, []);
 
   return (
     <>
-      <Grid container spacing={{ xs: 2, md: 3 }} p={5} sx={{ display: "flex" }}>
-        {allPokemons.map((pokemon) => (
-          <Grid item xs={6} md={4}>
-            <PokemonCard
-              key={pokemon.id}
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.sprites.other.dream_world.front_default}
-              primaryType={pokemon.types[0].type.name}
-            />
-          </Grid>
-        ))}
-      </Grid>
-      <Box textAlign="center" pb={5}>
-        <Button startIcon={<AddCircle />} onClick={() => getAllPokemons()}>
-          Load More
-        </Button>
-      </Box>
+      {loading ? (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
+        >
+          <CircularProgress color="inherit" />
+          <Typography sx={{ ml: 1 }}>Fetching Pokemon...</Typography>
+        </Backdrop>
+      ) : (
+        <Grid container spacing={2}>
+          {pokemon.map((p) => (
+            <Grid item key={p.data.name} xs={12} md={4}>
+              <PokemonCard pokemon={p.data} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </>
   );
 };

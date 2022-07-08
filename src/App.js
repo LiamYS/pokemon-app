@@ -1,4 +1,4 @@
-import { Box, createTheme, ThemeProvider } from "@mui/material";
+import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./layouts/Header";
@@ -16,6 +16,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={darkTheme}>
+        <CssBaseline enableColorScheme />
         <Box bgcolor={"background.default"} color={"text.primary"}>
           <Header />
           <Routes>
