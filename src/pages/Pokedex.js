@@ -1,7 +1,9 @@
-import { Backdrop, CircularProgress, Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 import PokemonCard from "../components/PokemonCard";
+import Region from "../components/Region";
 
 const Pokedex = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -30,21 +32,18 @@ const Pokedex = () => {
   return (
     <>
       {loading ? (
-        <Backdrop
-          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={loading}
-        >
-          <CircularProgress color="inherit" />
-          <Typography sx={{ ml: 1 }}>Fetching Pokémon...</Typography>
-        </Backdrop>
+        <Loading isLoading={loading} />
       ) : (
-        <Grid container spacing={3} sx={{ p: 3 }}>
-          {pokemon.map((p) => (
-            <Grid item key={p.data.name} xs={12} sm={6} md={4} lg={2}>
-              <PokemonCard pokemon={p.data} />
-            </Grid>
-          ))}
-        </Grid>
+        <>
+          <Region region="Kanto" />
+          <Grid container spacing={3} sx={{ p: 3 }}>
+            {pokemon.map((p) => (
+              <Grid item key={p.data.name} xs={12} sm={6} md={4} lg={2}>
+                <PokemonCard pokemon={p.data} />
+              </Grid>
+            ))}
+          </Grid>
+        </>
       )}
     </>
   );
