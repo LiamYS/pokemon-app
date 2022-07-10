@@ -3,7 +3,7 @@
 [![Project Version][version-image]][version-url]
 [![Frontend][frontend-image]][frontend-url]
 
-This project will give the user the ability to search for any Pokémon in the PokéDex. Furthermore, one can search for different items and berries aswell. This project was for educational purposes.
+This project will give the user the ability to search for any Pokémon of the Kanto region in the PokéDex. Furthermore, one can search for different items and berries aswell. This project is for educational purposes.
 
 ---
 
@@ -11,7 +11,7 @@ This project will give the user the ability to search for any Pokémon in the Po
 
 **Liam Yves Vlaskamp**
 
-- _My professional profile on_ [LinkedIn][linkedin-url]
+- _My Linkedin profile on_ [LinkedIn][linkedin-url]
 
 ## Showcase
 
