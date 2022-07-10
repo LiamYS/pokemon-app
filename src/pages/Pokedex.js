@@ -35,7 +35,7 @@ const Pokedex = () => {
           open={loading}
         >
           <CircularProgress color="inherit" />
-          <Typography sx={{ ml: 1 }}>Fetching Pokemon...</Typography>
+          <Typography sx={{ ml: 1 }}>Fetching Pokémon...</Typography>
         </Backdrop>
       ) : (
         <Grid container spacing={3} sx={{ p: 3 }}>
