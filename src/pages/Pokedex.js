@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import PokemonCard from "../components/PokemonCard";
-import Region from "../components/Region";
+import Generation from "../components/Generation";
 
 const Pokedex = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -35,7 +35,7 @@ const Pokedex = () => {
         <Loading isLoading={loading} />
       ) : (
         <>
-          <Region region="Kanto" />
+          <Generation generation="1st" />
           <Grid container spacing={3} sx={{ p: 3 }}>
             {pokemon.map((p) => (
               <Grid item key={p.data.name} xs={12} sm={6} md={4} lg={2}>

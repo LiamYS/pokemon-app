@@ -22,9 +22,9 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Pokedex />} />
+            <Route path="/pokemon/:id" element={<Pokemon />} />
             <Route path="/berries" element={<Berries />} />
             <Route path="/items" element={<Items />} />
-            <Route path="/pokemon/:id" element={<Pokemon />} />
           </Routes>
         </Box>
       </ThemeProvider>

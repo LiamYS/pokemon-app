@@ -8,21 +8,9 @@ import {
 } from "@mui/material";
 import React from "react";
 import "../components/PokemonCardStyles.css";
+import { CountDigits } from "../Helper";
 
 const PokemonCard = ({ pokemon }) => {
-  function CountDigits(number) {
-    switch (number.toString().length) {
-      case 1:
-        return <Typography variant="h6">#00{number}</Typography>;
-      case 2:
-        return <Typography variant="h6">#0{number}</Typography>;
-      case 3:
-        return <Typography variant="h6">#{number}</Typography>;
-      default:
-        return <Typography variant="h6">#{number}</Typography>;
-    }
-  }
-
   return (
     <Card>
       <CardActionArea href={`/pokemon/${pokemon.id}`}>
@@ -32,7 +20,7 @@ const PokemonCard = ({ pokemon }) => {
             image={pokemon.sprites.front_default}
             alt={pokemon.name}
           />
-          {CountDigits(pokemon.id)}
+          {CountDigits(pokemon.id, true)}
           <Typography variant="h5">
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </Typography>
