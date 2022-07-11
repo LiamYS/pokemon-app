@@ -10,8 +10,6 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
-const pages = ["PokéDex", "Berries", "Items"];
-
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -44,13 +42,13 @@ const Header = () => {
           >
             PokéDex
           </Button>
-          <Button
+          {/* <Button
             component={Link}
             to="/berries"
             sx={{ color: "white", display: "inline", alignItems: "center" }}
           >
             Berries
-          </Button>
+          </Button> */}
           <Button
             component={Link}
             to="/items"

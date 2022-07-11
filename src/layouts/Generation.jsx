@@ -9,7 +9,7 @@ const Region = (props) => {
           variant="h4"
           sx={{ textAlign: "center", fontWeight: "bold" }}
         >
-          {props.generation} Generation
+          {props.generation}
         </Typography>
       </CardContent>
     </Card>

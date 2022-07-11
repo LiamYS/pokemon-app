@@ -16,7 +16,7 @@ const PokemonStats = ({ pokemonDetails }) => {
   var total_stats = 0;
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
       <Typography variant="h5">Base Stats</Typography>
       <TableContainer component={Paper}>
         <Table>

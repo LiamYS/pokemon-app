@@ -12,9 +12,9 @@ import {
 import React from "react";
 import { CountDigits } from "../Helper";
 
-const PokemonData = ({ pokemonDetails }) => {
+const PokemonData = ({ pokemonDetails, pokemonSpecies }) => {
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
       <Typography variant="h5">Pokémon Details</Typography>
       <TableContainer component={Paper}>
         <Table>
@@ -38,6 +38,10 @@ const PokemonData = ({ pokemonDetails }) => {
                   />
                 ))}
               </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Species</TableCell>
+              <TableCell>{pokemonSpecies.genera[7].genus}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Height</TableCell>
