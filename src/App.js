@@ -24,7 +24,7 @@ function App() {
             <Route path="/" element={<Pokedex />} />
             <Route path="/pokemon/:id" element={<Pokemon />} />
             <Route path="/berries" element={<Berries />} />
-            <Route path="/items" element={<Items />} />
+            <Route path="/items/:range" element={<Items />} />
           </Routes>
         </Box>
       </ThemeProvider>

@@ -51,7 +51,7 @@ const Header = () => {
           </Button> */}
           <Button
             component={Link}
-            to="/items"
+            to="/items/100"
             sx={{ color: "white", display: "inline", alignItems: "center" }}
           >
             Items

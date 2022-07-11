@@ -31,7 +31,7 @@ const Pokedex = () => {
   return (
     <>
       {loading ? (
-        <Loading isLoading={loading} />
+        <Loading isLoading={loading} message="Pokémon" />
       ) : (
         <>
           <Generation generation="1st Generation" />

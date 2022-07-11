@@ -8,7 +8,7 @@ const Loading = (props) => {
       open={props.isLoading}
     >
       <CircularProgress color="inherit" />
-      <Typography sx={{ ml: 1 }}>Fetching Pokémon...</Typography>
+      <Typography sx={{ ml: 1 }}>Fetching {props.message}...</Typography>
     </Backdrop>
   );
 };

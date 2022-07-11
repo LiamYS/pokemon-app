@@ -1,6 +1,8 @@
 import {
+  // Button,
   Card,
   CardContent,
+  // Grid,
   Paper,
   Table,
   TableBody,
@@ -13,15 +15,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Generation from "../layouts/Generation";
+import { CountDigits } from "../Helper";
+// import { useParams, useNavigate } from "react-router-dom";
+// import LastPageIcon from "@mui/icons-material/LastPage";
 
 const Items = () => {
+  // let range = useParams();
+  // const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getItemList = async () => {
     let itemArray = [];
-    for (let i = 1; i <= 200; i++) {
+    for (let i = 1; i <= 666; i++) {
       itemArray.push(await getItemData(i));
+      console.log(itemArray);
     }
     setItems(itemArray);
     setLoading(false);
@@ -32,6 +40,14 @@ const Items = () => {
     return res;
   };
 
+  // const incrementRange = () => {
+  //   range = parseInt(range.range) + 100;
+  //   navigate(`../items/${range}`);
+  //   setItems([]);
+  //   setLoading(true);
+  //   getItemList();
+  // };
+
   useEffect(() => {
     getItemList();
     // eslint-disable-next-line
@@ -40,24 +56,35 @@ const Items = () => {
   return (
     <>
       {loading ? (
-        <Loading isLoading={loading} />
+        <Loading isLoading={loading} message="Items" />
       ) : (
         <>
           <Generation generation="All Items" />
-          <Card sx={{ m: 4 }}>
+          <Card sx={{ mt: 4, mb: 4, ml: 15, mr: 15 }}>
             <CardContent>
               <TableContainer component={Paper}>
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell>Item name</TableCell>
+                      <TableCell>ID</TableCell>
+                      <TableCell>Icon</TableCell>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Effect</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {items.map((item) => (
                       <TableRow key={item.data.name}>
+                        <TableCell>{CountDigits(item.data.id)}</TableCell>
                         <TableCell>
-                          {item.data.name.replace("-", " ")}
+                          <img
+                            alt={item.data.name}
+                            src={item.data.sprites.default}
+                          ></img>
+                        </TableCell>
+                        <TableCell>{item.data.name}</TableCell>
+                        <TableCell>
+                          {item.data.effect_entries[0].effect}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -66,6 +93,23 @@ const Items = () => {
               </TableContainer>
             </CardContent>
           </Card>
+          {/* <Grid
+            container
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              variant="outlined"
+              endIcon={<LastPageIcon />}
+              // onClick={incrementRange}
+              sx={{ mb: 4 }}
+            >
+              Load More
+            </Button>
+          </Grid> */}
         </>
       )}
     </>

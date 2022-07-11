@@ -41,7 +41,7 @@ const Pokemon = () => {
   return (
     <>
       {loading ? (
-        <Loading isLoading={loading} />
+        <Loading isLoading={loading} message="Pokémon" />
       ) : (
         <Card sx={{ m: 4 }}>
           <CardContent>
