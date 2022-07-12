@@ -11,6 +11,9 @@ const Region = (props) => {
         >
           {props.generation}
         </Typography>
+        <Typography sx={{ textAlign: "center", ml: 15, mr: 15 }}>
+          {props.description}
+        </Typography>
       </CardContent>
     </Card>
   );

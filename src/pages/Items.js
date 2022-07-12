@@ -1,8 +1,6 @@
 import {
-  // Button,
   Card,
   CardContent,
-  // Grid,
   Paper,
   Table,
   TableBody,
@@ -16,12 +14,10 @@ import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Generation from "../layouts/Generation";
 import { CountDigits } from "../Helper";
-// import { useParams, useNavigate } from "react-router-dom";
-// import LastPageIcon from "@mui/icons-material/LastPage";
 
 const Items = () => {
-  // let range = useParams();
-  // const navigate = useNavigate();
+  const description =
+    "Items are another staple of the Pokémon franchise. They are objects to be collected and used for specific purposes, including progressing through the game's storyline, Pokémon capture, healing your Pokémon, helping Pokémon in battle, improving their stats and even evolving Pokémon.";
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +25,6 @@ const Items = () => {
     let itemArray = [];
     for (let i = 1; i <= 666; i++) {
       itemArray.push(await getItemData(i));
-      console.log(itemArray);
     }
     setItems(itemArray);
     setLoading(false);
@@ -40,13 +35,13 @@ const Items = () => {
     return res;
   };
 
-  // const incrementRange = () => {
-  //   range = parseInt(range.range) + 100;
-  //   navigate(`../items/${range}`);
-  //   setItems([]);
-  //   setLoading(true);
-  //   getItemList();
-  // };
+  const checkItemName = (item) => {
+    if (item.data.names[7] === undefined) {
+      return item.data.name;
+    } else {
+      return item.data.names[7].name;
+    }
+  };
 
   useEffect(() => {
     getItemList();
@@ -59,7 +54,7 @@ const Items = () => {
         <Loading isLoading={loading} message="Items" />
       ) : (
         <>
-          <Generation generation="All Items" />
+          <Generation generation="All Items" description={description} />
           <Card sx={{ mt: 4, mb: 4, ml: 15, mr: 15 }}>
             <CardContent>
               <TableContainer component={Paper}>
@@ -82,7 +77,7 @@ const Items = () => {
                             src={item.data.sprites.default}
                           ></img>
                         </TableCell>
-                        <TableCell>{item.data.name}</TableCell>
+                        <TableCell>{checkItemName(item)}</TableCell>
                         <TableCell>
                           {item.data.effect_entries[0].effect}
                         </TableCell>
@@ -93,23 +88,6 @@ const Items = () => {
               </TableContainer>
             </CardContent>
           </Card>
-          {/* <Grid
-            container
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="outlined"
-              endIcon={<LastPageIcon />}
-              // onClick={incrementRange}
-              sx={{ mb: 4 }}
-            >
-              Load More
-            </Button>
-          </Grid> */}
         </>
       )}
     </>

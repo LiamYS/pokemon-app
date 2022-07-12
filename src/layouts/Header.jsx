@@ -42,16 +42,9 @@ const Header = () => {
           >
             PokéDex
           </Button>
-          {/* <Button
-            component={Link}
-            to="/berries"
-            sx={{ color: "white", display: "inline", alignItems: "center" }}
-          >
-            Berries
-          </Button> */}
           <Button
             component={Link}
-            to="/items/100"
+            to="/items"
             sx={{ color: "white", display: "inline", alignItems: "center" }}
           >
             Items
