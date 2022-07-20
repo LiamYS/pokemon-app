@@ -1,52 +1,25 @@
-# Pokémon App
+## PokéApp
 
-[![Project Version][version-image]][version-url]
-[![Frontend][frontend-image]][frontend-url]
+An application used to find any Pokémon from the Kanto region in the Pokédex, if one clicks on a Pokémon stats will be displayed. Furthermore, one can search for different items in the Pokémon games. It is made using React and uses the PokéAPI.
 
-This project will give the user the ability to search for any Pokémon of the Kanto region in the PokéDex. Furthermore, one can search for different items and berries aswell. This project is for educational purposes.
+## Project Screen Shot(s)
 
----
+[Pokédex](screenshots/pokedex.png)
+[Pokemon](screenshots/pokemon.png)
+[items](screenshots/items.png)
 
-## Author
+## Installation and Setup Instructions
 
-**Liam Yves Vlaskamp**
+Clone down this repository. You will need `node` and `npm` installed globally on your machine.
 
-- _My Linkedin profile on_ [LinkedIn][linkedin-url]
+Installation:
 
-## Showcase
+`npm install`
 
-This project was designed to demonstrate:
+To Run Test Suite:
 
-- ReactJS
-- MUI
+`npm test`
 
-## Installation
+To Start Server:
 
-W.I.P
-
-## Development setup
-
-W.I.P.
-
----
-
-## Built With
-
-W.I.P.
-
-## Release History
-
-- 0.0.1
-  - Initial work
-
----
-
-<!-- Markdown link & img dfn's -->
-
-[header-url]: github-template.png
-[header-link]: https://github.com/liamys
-[linkedin-url]: https://www.linkedin.com/in/liam-vlaskamp/
-[version-image]: https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge&logo=appveyor
-[version-url]: https://img.shields.io/badge/version-1.0.0-green
-[frontend-image]: https://img.shields.io/badge/Frontend-Ionic-blue?style=for-the-badge
-[frontend-url]: https://img.shields.io/badge/Frontend-Ionic-blue?style=for-the-badge
+`npm start`
