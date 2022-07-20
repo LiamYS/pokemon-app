@@ -1,7 +1,7 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 
-const Region = (props) => {
+const SubHeader = ({ title, description }) => {
   return (
     <Card>
       <CardContent>
@@ -9,14 +9,14 @@ const Region = (props) => {
           variant="h4"
           sx={{ textAlign: "center", fontWeight: "bold" }}
         >
-          {props.generation}
+          {title}
         </Typography>
         <Typography sx={{ textAlign: "center", ml: 15, mr: 15 }}>
-          {props.description}
+          {description}
         </Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default Region;
+export default SubHeader;

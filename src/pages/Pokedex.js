@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import PokemonCard from "../components/PokemonCard";
-import Generation from "../layouts/Generation";
+import SubHeader from "../layouts/SubHeader";
 
 const Pokedex = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -19,8 +19,8 @@ const Pokedex = () => {
   };
 
   const getPokemonData = async (id) => {
-    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    return res;
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    return response;
   };
 
   useEffect(() => {
@@ -34,7 +34,10 @@ const Pokedex = () => {
         <Loading isLoading={loading} message="Pokémon" />
       ) : (
         <>
-          <Generation generation="1st Generation" />
+          <SubHeader
+            title="Kanto Region"
+            description="Kanto is a region in the Pokémon series and is the main region in first generation and their remakes and a secondary region in the second generation and their remakes. It is located east of Johto and has many of the same Berries, but no Apricorns. It is also located above Hoenn, and below Sinnoh."
+          />
           <Grid container spacing={3} sx={{ p: 3 }}>
             {pokemon.map((p) => (
               <Grid item key={p.data.name} xs={12} sm={6} md={4} lg={2}>

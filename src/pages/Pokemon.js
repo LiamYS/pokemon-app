@@ -9,7 +9,6 @@ import PokemonStats from "../components/PokemonStats";
 import PokemonTraining from "../components/PokemonTraining";
 
 const Pokemon = () => {
-  // Get specific pokemon id from URL parameters
   const param = useParams();
   const [pokemonDetails, setPokemonDetails] = useState({
     details: null,
@@ -17,24 +16,24 @@ const Pokemon = () => {
   });
   const [loading, setLoading] = useState(true);
 
+  const fetchPokemonData = async (id) => {
+    const pokemonDetails = await axios(
+      `https://pokeapi.co/api/v2/pokemon/${id}`
+    );
+    const pokemonSpecies = await axios(
+      `https://pokeapi.co/api/v2/pokemon-species/${id}`
+    );
+    setPokemonDetails({
+      details: pokemonDetails.data,
+      species: pokemonSpecies.data,
+    });
+
+    setLoading(false);
+  };
+
   useEffect(() => {
     const id = param.id;
-    const fetchData = async (id) => {
-      const pokemonDetails = await axios(
-        `https://pokeapi.co/api/v2/pokemon/${id}`
-      );
-      const pokemonSpecies = await axios(
-        `https://pokeapi.co/api/v2/pokemon-species/${id}`
-      );
-      setPokemonDetails({
-        details: pokemonDetails.data,
-        species: pokemonSpecies.data,
-      });
-
-      setLoading(false);
-    };
-
-    fetchData(id);
+    fetchPokemonData(id);
     // eslint-disable-next-line
   }, []);
 

@@ -14,24 +14,21 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
-import Generation from "../layouts/Generation";
 import { CountDigits } from "../Helper";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import SubHeader from "../layouts/SubHeader";
 
 const Items = () => {
-  const description =
-    "Items are another staple of the Pokémon franchise. They are objects to be collected and used for specific purposes, including progressing through the game's storyline, Pokémon capture, healing your Pokémon, helping Pokémon in battle, improving their stats and even evolving Pokémon.";
-  const initialItems = 50;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [next, setNext] = useState(initialItems);
-  const [maxItems, setMaxItems] = useState(false);
-  const [minItems, setMinItems] = useState(true);
+  const [url, setUrl] = useState("https://pokeapi.co/api/v2/item?limit=50");
+  const [nextUrl, setNextUrl] = useState();
+  const [prevUrl, setPrevUrl] = useState();
 
   const getItemData = async () => {
-    let response = await axios.get(
-      `https://pokeapi.co/api/v2/item?limit=${initialItems}&offset=${next - 50}`
-    );
+    let response = await axios.get(url);
+    setNextUrl(response.data.next);
+    setPrevUrl(response.data.previous);
     return response;
   };
 
@@ -53,23 +50,6 @@ const Items = () => {
     setLoading(false);
   };
 
-  const handleLessItems = () => {
-    if (next <= 50) {
-      setMinItems(true);
-      return;
-    }
-    setNext(next - initialItems);
-  };
-
-  const handleMoreItems = () => {
-    const maxItemsAvailable = 666;
-    setMinItems(false);
-    if (next >= maxItemsAvailable - initialItems) {
-      setMaxItems(true);
-    }
-    setNext(next + initialItems);
-  };
-
   const checkItemName = (item) => {
     if (item.data.names[7] === undefined) {
       return item.data.name;
@@ -81,7 +61,7 @@ const Items = () => {
   useEffect(() => {
     getItemList();
     // eslint-disable-next-line
-  }, []);
+  }, [url]);
 
   return (
     <>
@@ -89,7 +69,10 @@ const Items = () => {
         <Loading isLoading={loading} message="Items" />
       ) : (
         <>
-          <Generation generation="All Items" description={description} />
+          <SubHeader
+            title="Items"
+            description="Items are another staple of the Pokémon franchise. They are objects to be collected and used for specific purposes, including progressing through the game's storyline, Pokémon capture, healing your Pokémon, helping Pokémon in battle, improving their stats and even evolving Pokémon."
+          />
           <Card sx={{ mt: 4, mb: 4, ml: 15, mr: 15 }}>
             <CardContent>
               <TableContainer component={Paper}>
@@ -130,31 +113,25 @@ const Items = () => {
               justifyContent: "center",
             }}
           >
-            {!minItems && (
+            {prevUrl && (
               <Button
                 variant="outlined"
                 startIcon={<ArrowBack />}
                 sx={{ mb: 4 }}
                 onClick={() => {
-                  setLoading(true);
-                  handleLessItems();
-                  console.log(minItems);
-                  getItemList();
+                  setUrl(prevUrl);
                 }}
               >
                 Previous Page
               </Button>
             )}
-            {!maxItems && (
+            {nextUrl && (
               <Button
                 variant="outlined"
                 endIcon={<ArrowForward />}
                 sx={{ mb: 4, ml: 2 }}
                 onClick={() => {
-                  setLoading(true);
-                  handleMoreItems();
-                  console.log(minItems);
-                  getItemList();
+                  setUrl(nextUrl);
                 }}
               >
                 Next Page
