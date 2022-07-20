@@ -1,6 +1,8 @@
 import {
+  Button,
   Card,
   CardContent,
+  Container,
   Paper,
   Table,
   TableBody,
@@ -14,25 +16,48 @@ import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Generation from "../layouts/Generation";
 import { CountDigits } from "../Helper";
+import { Refresh } from "@mui/icons-material";
 
 const Items = () => {
   const description =
     "Items are another staple of the Pokémon franchise. They are objects to be collected and used for specific purposes, including progressing through the game's storyline, Pokémon capture, healing your Pokémon, helping Pokémon in battle, improving their stats and even evolving Pokémon.";
+  const initialItems = 50;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [next, setNext] = useState(initialItems);
+  const [maxItems, setMaxItems] = useState(false);
+
+  const getItemData = async () => {
+    let response = await axios.get(
+      `https://pokeapi.co/api/v2/item?limit=${next}`
+    );
+    return response;
+  };
+
+  const getItem = async (url) => {
+    let response = await axios.get(url);
+    return response;
+  };
 
   const getItemList = async () => {
+    let data = await getItemData();
     let itemArray = [];
-    for (let i = 1; i <= 666; i++) {
-      itemArray.push(await getItemData(i));
+
+    for (const item of data.data.results) {
+      let itemData = await getItem(item.url);
+      itemArray.push(itemData);
     }
     setItems(itemArray);
     setLoading(false);
   };
 
-  const getItemData = async (id) => {
-    const res = await axios.get(`https://pokeapi.co/api/v2/item/${id}`);
-    return res;
+  const handleMoreItems = () => {
+    const maxItemsAvailable = 666;
+    if (next >= maxItemsAvailable - initialItems) {
+      setNext(next + (maxItemsAvailable - next));
+      setMaxItems(true);
+    }
+    setNext(next + initialItems);
   };
 
   const checkItemName = (item) => {
@@ -88,6 +113,28 @@ const Items = () => {
               </TableContainer>
             </CardContent>
           </Card>
+          {!maxItems && (
+            <Container
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Button
+                variant="outlined"
+                endIcon={<Refresh />}
+                sx={{ mb: 4 }}
+                onClick={() => {
+                  setLoading(true);
+                  handleMoreItems();
+                  getItemList();
+                }}
+              >
+                Load More
+              </Button>
+            </Container>
+          )}
         </>
       )}
     </>
