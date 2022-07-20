@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Generation from "../layouts/Generation";
 import { CountDigits } from "../Helper";
-import { Refresh } from "@mui/icons-material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 const Items = () => {
   const description =
@@ -26,10 +26,11 @@ const Items = () => {
   const [loading, setLoading] = useState(true);
   const [next, setNext] = useState(initialItems);
   const [maxItems, setMaxItems] = useState(false);
+  const [minItems, setMinItems] = useState(true);
 
   const getItemData = async () => {
     let response = await axios.get(
-      `https://pokeapi.co/api/v2/item?limit=${next}`
+      `https://pokeapi.co/api/v2/item?limit=${initialItems}&offset=${next - 50}`
     );
     return response;
   };
@@ -47,14 +48,23 @@ const Items = () => {
       let itemData = await getItem(item.url);
       itemArray.push(itemData);
     }
+
     setItems(itemArray);
     setLoading(false);
   };
 
+  const handleLessItems = () => {
+    if (next <= 50) {
+      setMinItems(true);
+      return;
+    }
+    setNext(next - initialItems);
+  };
+
   const handleMoreItems = () => {
     const maxItemsAvailable = 666;
+    setMinItems(false);
     if (next >= maxItemsAvailable - initialItems) {
-      setNext(next + (maxItemsAvailable - next));
       setMaxItems(true);
     }
     setNext(next + initialItems);
@@ -113,28 +123,44 @@ const Items = () => {
               </TableContainer>
             </CardContent>
           </Card>
-          {!maxItems && (
-            <Container
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+          <Container
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {!minItems && (
               <Button
                 variant="outlined"
-                endIcon={<Refresh />}
+                startIcon={<ArrowBack />}
                 sx={{ mb: 4 }}
                 onClick={() => {
                   setLoading(true);
-                  handleMoreItems();
+                  handleLessItems();
+                  console.log(minItems);
                   getItemList();
                 }}
               >
-                Load More
+                Previous Page
               </Button>
-            </Container>
-          )}
+            )}
+            {!maxItems && (
+              <Button
+                variant="outlined"
+                endIcon={<ArrowForward />}
+                sx={{ mb: 4, ml: 2 }}
+                onClick={() => {
+                  setLoading(true);
+                  handleMoreItems();
+                  console.log(minItems);
+                  getItemList();
+                }}
+              >
+                Next Page
+              </Button>
+            )}
+          </Container>
         </>
       )}
     </>
