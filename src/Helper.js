@@ -33,3 +33,11 @@ export const checkItemName = (item) => {
     return item.data.names[7].name;
   }
 };
+
+export const checkItemDesc = (item) => {
+  if (item.data.effect_entries[0] === undefined) {
+    return "No description available from API";
+  } else {
+    return item.data.effect_entries[0].effect;
+  }
+};

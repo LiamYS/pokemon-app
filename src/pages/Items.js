@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
-import { countDigits, checkItemName } from "../Helper";
+import { countDigits, checkItemName, checkItemDesc } from "../Helper";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import SubHeader from "../layouts/SubHeader";
 
@@ -62,7 +62,14 @@ const Items = () => {
             title="Items"
             description="Items are another staple of the Pokémon franchise. They are objects to be collected and used for specific purposes, including progressing through the game's storyline, Pokémon capture, healing your Pokémon, helping Pokémon in battle, improving their stats and even evolving Pokémon."
           />
-          <Card sx={{ mt: 4, mb: 4, ml: 15, mr: 15 }}>
+          <Card
+            sx={{
+              mt: 4,
+              mb: 4,
+              ml: { xs: 0, md: 15 },
+              mr: { xs: 0, md: 15 },
+            }}
+          >
             <CardContent>
               <TableContainer component={Paper}>
                 <Table>
@@ -71,7 +78,11 @@ const Items = () => {
                       <TableCell>ID</TableCell>
                       <TableCell>Icon</TableCell>
                       <TableCell>Name</TableCell>
-                      <TableCell>Effect</TableCell>
+                      <TableCell
+                        sx={{ display: { xs: "none", sm: "table-cell" } }}
+                      >
+                        Effect
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -85,8 +96,10 @@ const Items = () => {
                           ></img>
                         </TableCell>
                         <TableCell>{checkItemName(item)}</TableCell>
-                        <TableCell>
-                          {item.data.effect_entries[0].effect}
+                        <TableCell
+                          sx={{ display: { xs: "none", sm: "table-cell" } }}
+                        >
+                          {checkItemDesc(item)}
                         </TableCell>
                       </TableRow>
                     ))}

@@ -7,11 +7,21 @@ const SubHeader = ({ title, description }) => {
       <CardContent>
         <Typography
           variant="h4"
-          sx={{ textAlign: "center", fontWeight: "bold" }}
+          sx={{
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
         >
           {title}
         </Typography>
-        <Typography sx={{ textAlign: "center", ml: 15, mr: 15 }}>
+        <Typography
+          sx={{
+            textAlign: "center",
+            ml: 15,
+            mr: 15,
+            display: { xs: "none", sm: "block" },
+          }}
+        >
           {description}
         </Typography>
       </CardContent>
