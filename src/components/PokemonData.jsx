@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { CountDigits } from "../Helper";
+import { countDigits } from "../Helper";
 
 const PokemonData = ({ pokemonDetails, pokemonSpecies }) => {
   return (
@@ -21,7 +21,7 @@ const PokemonData = ({ pokemonDetails, pokemonSpecies }) => {
           <TableBody>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell>{CountDigits(pokemonDetails.id)}</TableCell>
+              <TableCell>{countDigits(pokemonDetails.id)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Type</TableCell>

@@ -14,23 +14,16 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
-import { CountDigits } from "../Helper";
+import { countDigits, checkItemName } from "../Helper";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import SubHeader from "../layouts/SubHeader";
 
 const Items = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [url, setUrl] = useState("https://pokeapi.co/api/v2/item?limit=50");
+  const [url, setUrl] = useState("https://pokeapi.co/api/v2/item?limit=100");
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
-
-  const getItemData = async () => {
-    let response = await axios.get(url);
-    setNextUrl(response.data.next);
-    setPrevUrl(response.data.previous);
-    return response;
-  };
 
   const getItem = async (url) => {
     let response = await axios.get(url);
@@ -38,24 +31,20 @@ const Items = () => {
   };
 
   const getItemList = async () => {
-    let data = await getItemData();
+    let response = await axios.get(url);
     let itemArray = [];
 
-    for (const item of data.data.results) {
+    setLoading(true);
+    setNextUrl(response.data.next);
+    setPrevUrl(response.data.previous);
+
+    for (const item of response.data.results) {
       let itemData = await getItem(item.url);
       itemArray.push(itemData);
     }
 
     setItems(itemArray);
     setLoading(false);
-  };
-
-  const checkItemName = (item) => {
-    if (item.data.names[7] === undefined) {
-      return item.data.name;
-    } else {
-      return item.data.names[7].name;
-    }
   };
 
   useEffect(() => {
@@ -88,7 +77,7 @@ const Items = () => {
                   <TableBody>
                     {items.map((item) => (
                       <TableRow key={item.data.name}>
-                        <TableCell>{CountDigits(item.data.id)}</TableCell>
+                        <TableCell>{countDigits(item.data.id)}</TableCell>
                         <TableCell>
                           <img
                             alt={item.data.name}

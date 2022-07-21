@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-export function CountDigits(number, variant) {
+export function countDigits(number, variant) {
   if (variant === undefined) {
     switch (number.toString().length) {
       case 1:
@@ -25,3 +25,11 @@ export function CountDigits(number, variant) {
     }
   }
 }
+
+export const checkItemName = (item) => {
+  if (item.data.names[7] === undefined) {
+    return item.data.name;
+  } else {
+    return item.data.names[7].name;
+  }
+};

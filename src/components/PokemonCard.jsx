@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import "../components/PokemonCardStyles.css";
-import { CountDigits } from "../Helper";
+import { countDigits } from "../Helper";
 
 const PokemonCard = ({ pokemon }) => {
   return (
@@ -20,7 +20,7 @@ const PokemonCard = ({ pokemon }) => {
             image={pokemon.sprites.front_default}
             alt={pokemon.name}
           />
-          {CountDigits(pokemon.id, true)}
+          {countDigits(pokemon.id, true)}
           <Typography variant="h5">
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </Typography>
